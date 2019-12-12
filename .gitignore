@@ -6,6 +6,7 @@ db.sqlite*
 
 .DS_Store
 node_modules
+ignore
 
 # local env files
 .env.local
