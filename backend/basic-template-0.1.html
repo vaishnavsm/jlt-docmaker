@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <meta class="doc-meta" content="name=Basic-Template">
+        <meta class="doc-meta" content="category=None">
+        <meta class="doc-meta" content="security-level=1000">
+        <meta class="doc-meta" content="security-labels=">
+    </head>
+    <body>
+        <p>This is your name: <span class="data-box" x-name="name" x-type="string"></span></p>
+        <p>This is your age: <span class="data-box" x-name="age" x-type="integer"></span></p>
+        <p>This is your phone number: <span class="data-box" x-name="phone_num" x-type="string" x-max-len="12"></span></p>
+        <p>This is your marks: <span class="data-box" x-name="marks" x-type="real"></span></p>
+        <table class="data-box">
+            <tr>
+                <th x-name="key" x-type="string">Key</th>
+                <th x-name="value" x-type="real">Value</th>
+            </tr>
+        </table>
+    </body>
+</html>
