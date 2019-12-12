@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta class="doc-meta" content="name=Basic-Template">
         <meta class="doc-meta" content="category=None">
         <meta class="doc-meta" content="security-level=1000">
@@ -10,10 +11,11 @@
         <p>This is your age: <span class="data-box" x-name="age" x-type="integer"></span></p>
         <p>This is your phone number: <span class="data-box" x-name="phone_num" x-type="string" x-max-len="12"></span></p>
         <p>This is your marks: <span class="data-box" x-name="marks" x-type="real"></span></p>
-        <table class="data-box">
+        <table class="data-table" x-name="key-value-pair">
             <tr>
-                <th x-name="key" x-type="string">Key</th>
+                <th x-name="key2" x-type="string">Key</th>
                 <th x-name="value" x-type="real">Value</th>
+                <th x-name="key" x-type="string">Key Again</th>
             </tr>
         </table>
     </body>
