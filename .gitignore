@@ -1,6 +1,7 @@
 migrations
 __pycache__
 env
+backend/venv/
 
 db.sqlite*
 
