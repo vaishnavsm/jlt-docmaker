@@ -3,6 +3,7 @@ __pycache__
 env
 backend/venv/
 frontend/yarn.lock
+backend/dist/
 
 db.sqlite*
 
