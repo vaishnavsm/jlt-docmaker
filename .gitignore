@@ -2,6 +2,7 @@ migrations
 __pycache__
 env
 backend/venv/
+frontend/yarn.lock
 
 db.sqlite*
 
