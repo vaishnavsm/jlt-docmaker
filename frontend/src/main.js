@@ -3,7 +3,10 @@ import App from './App.vue';
 import router from "./router";
 import BootstrapVue from 'bootstrap-vue';
 import LoadScript from 'vue-plugin-load-script';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
+Vue.use(VueAxios, axios);
 Vue.use(LoadScript);
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false;

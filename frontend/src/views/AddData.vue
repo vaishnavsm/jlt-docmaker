@@ -37,12 +37,17 @@
                 </div>
             </div> <!-- end left panel -->
         </div>
+        <div class="container text-xs-center">
+            <p></p>
+            <b-button pill variant="success" @click="handleClick">Submit</b-button>
+        </div>
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import ChartTable from "../components/ChartTable";
+import axios from 'axios';
 
 Vue.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
 Vue.loadScript("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/js/foundation.min.js");
@@ -71,6 +76,20 @@ export default {
         value: this.value ,
       };
       this.labels.push( newRow );
+    },
+    handleClick: function () {
+      // TODO Add URL here
+      axios.post( 'http://127.0.0.1:8000/template',
+        this.labels,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        ).then(function(){
+        })
+        .catch(function(){
+        });
     }
   },
   components :{

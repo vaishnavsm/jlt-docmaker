@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="text-xs-center">
-      <b-button pill variant="success" v-on:click="redirect('select-data')">Select CSV</b-button>
+      <b-button pill variant="success" v-on:click="redirect('select_data')">Select CSV</b-button>
       <span> OR </span>
-      <b-button pill variant="success" v-on:click="redirect('add-data')">Enter data</b-button>
+      <b-button pill variant="success" v-on:click="redirect('add_data')">Enter data</b-button>
     </div>
   </div>
 </template>
@@ -20,10 +20,10 @@ export default {
   name: 'home',
   methods:{
     redirect: function (msg) {
-      if (msg==='select-data')
-        router.push({name: 'select-data'});
+      if (msg==='select_data')
+        router.push({name: 'select_data'});
       else
-        router.push({name: 'add-data'});
+        router.push({name: 'add_data'});
     }
   }
 }
