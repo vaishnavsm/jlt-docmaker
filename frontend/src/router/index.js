@@ -11,12 +11,12 @@ export default new Router({
       component: () => import("@/views/Home.vue")
     },
     {
-      name: "select-data",
+      name: "select_data",
       path: "/select_data",
       component: () => import("@/views/SelectData.vue")
     },
     {
-      name: "add-data",
+      name: "add_data",
       path: "/add_data",
       component: () => import("@/views/AddData.vue")
     }

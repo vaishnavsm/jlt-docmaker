@@ -4,16 +4,15 @@
             <router-link class="navbar-brand" :to="{ name: 'home' }">
                 DocAssist
             </router-link>
-            <ul class="nav navbar-nav pull-xs-right">
+            <ul class="nav pull-xs-right">
                 <li class="nav-item">
-                    <router-link
-                            class="nav-link"
-                            active-class="active"
-                            exact
-                            :to="{ name: 'home' }"
-                    >
-                        Home
-                    </router-link>
+                    <router-link class="nav-link" :to="{ name: 'home' }">Home</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'select_data' }">Select Data</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'add_data' }">Add Data</router-link>
                 </li>
             </ul>
         </div>
