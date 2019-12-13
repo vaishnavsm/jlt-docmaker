@@ -1,22 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
-import LandingPage from './components/LandingPage.vue'
-import KeyValPage from './components/KeyValPage.vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import App from './App.vue';
+import router from "./router";
+import BootstrapVue from 'bootstrap-vue';
 
-Vue.config.productionTip = false
-Vue.use(VueRouter)
+Vue.use(BootstrapVue);
+Vue.config.productionTip = false;
 
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes: [
-    { path: '/', name: 'landing_page', component: LandingPage },
-    { path: '/manually_enter', name: 'key_val_page', component: KeyValPage },
-  ]
-});
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 new Vue({
-  render: h => h(App),
-  router
+  router,
+  render: h => h(App)
 }).$mount('#app');
