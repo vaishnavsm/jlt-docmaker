@@ -3,7 +3,7 @@ const { app, BrowserWindow } = require('electron')
 let win
 
 function createWindow () {
-    win = new BrowserWindow({ width: 800, height: 600, title:"JLT Doc System" })
+    win = new BrowserWindow({ width: 1000, height: 800, title:"JLT Doc System" })
     win.setMenu(null)
     win.loadFile('dist/index.html')
 

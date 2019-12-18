@@ -19,4 +19,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+  .p, .b-button {
+    font-family: 'Work Sans', sans-serif;
+  }
+</style>

@@ -19,6 +19,11 @@ export default new Router({
       name: "add_data",
       path: "/add_data",
       component: () => import("@/views/AddData.vue")
+    },
+    {
+      name: "results",
+      path: "/results",
+      component: () => import("@/views/Results.vue")
     }
   ]
 });

@@ -8,8 +8,7 @@
         <div id="chartpanel" class="row" data-equalizer>
             <div class="column small-12 left_panel" >
                 <header data-equalizer-watch>
-                    Enter data as key-value pairs
-                    <p></p>
+                    <p>Enter data as key-value pairs</p>
                 </header>
 
                 <div id="chart_table">
@@ -41,13 +40,15 @@
             <p></p>
             <b-button pill variant="success" @click="handleClick">Submit</b-button>
         </div>
+<!--        <b-spinner class="float-center" variant="primary" style="width: 6rem; height: 6rem;" :display="disabled"></b-spinner>-->
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
+import router from '../router';
 import ChartTable from "../components/ChartTable";
-import axios from 'axios';
+// import axios from 'axios';
 
 Vue.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
 Vue.loadScript("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/js/foundation.min.js");
@@ -59,6 +60,7 @@ export default {
   name: 'chartpanel',
   data() {
     return {
+      disabled: 'none',
       key: '',
       value: '',
       labels: [{
@@ -78,18 +80,25 @@ export default {
       this.labels.push( newRow );
     },
     handleClick: function () {
+      this.disable = 'visible';
+      setTimeout(() => {
+        this.disable = true;
+        router.push({name:'results'});
+      }, 1500);
+
+
       // TODO Add URL here
-      axios.post( 'http://127.0.0.1:8000/template',
-        this.labels,
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        ).then(function(){
-        })
-        .catch(function(){
-        });
+      // axios.post( 'http://127.0.0.1:8000/template',
+      //   this.labels,
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     }
+      //   }
+      //   ).then(function(){
+      //   })
+      //   .catch(function(){
+      //   });
     }
   },
   components :{
