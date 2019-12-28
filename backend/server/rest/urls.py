@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from . import engine
+
+
 urlpatterns = [
     path('create/', views.create_user),
     path('login/', views.login_user),
@@ -9,5 +12,8 @@ urlpatterns = [
     path('template/', views.template),
     path('auth_template/', views.auth_template),
     path('get_template/', views.get_template),
-    
+
+    path('recommend_templates/', engine.recommend_templates),
+    path('fill_template/',engine.fill_template),
+    path('find_difference_and_batch_apply/',engine.find_difference_and_batch_apply),
 ]
