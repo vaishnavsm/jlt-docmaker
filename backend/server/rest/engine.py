@@ -6,11 +6,11 @@ import json
 import os
 from rest_framework.decorators import api_view
 
-TEMPLATE_DIRECTORY = '' #TODO
 
-def get_template_fields(directory):
+def get_template_fields():
     """Returns dictionary of template and the fields it has.""" 
     output_dict = {}
+    directory = os.path.join(os.path.dirname(__file__),'../media/templates')
     for file_name in os.listdir(directory):
         if file_name.endswith(".docx"):
             doc_path = os.path.join(directory, file_name)
@@ -49,10 +49,9 @@ def find_field_column_mapping(field_names, column_names):
 @api_view(['POST'])
 def recommend_templates(request):  
     payload = json.loads(request.body)
-    l = payload['data'] # json object of key value pairs
-    column_names = l['column_names']
+    column_names = payload['data'] # json object of key value pairs
 
-    template_fields = get_template_fields(TEMPLATE_DIRECTORY)
+    template_fields = get_template_fields()
     recommendations = []
     for template in template_fields:
         field_names = template_fields[template]
@@ -65,7 +64,7 @@ def recommend_templates(request):
 
     # return a list of recommended template URLs
     # try including accuracy/degree of match for analytics
-    return JsonResponse(recommendations, status = 200)
+    return JsonResponse(recommendations,safe=False,status = 200)
 
 
 

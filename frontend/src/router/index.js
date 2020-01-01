@@ -23,7 +23,8 @@ export default new Router({
     {
       name: "results",
       path: "/results",
-      component: () => import("@/views/Results.vue")
+      component: () => import("@/views/Results.vue"),
+      props: true,
     }
   ]
 });
