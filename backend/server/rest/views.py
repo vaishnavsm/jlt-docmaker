@@ -106,7 +106,7 @@ def template(request):
         data = request.POST
         user = models.UserClass.objects.get(user = request.user)
         old_template = models.Template.objects.get(id=data['id'])
-        template = models.Template(name = old_template.name, version = old_template.version + 1, doc = request.FILES['doc'], security_labels=old_template.security_labels, security_levels=old_template.security_levels)
+        template = models.Template(name = old_template.name, version = old_template.version + 1, doc = request.FILES['doc'], security_labels=old_template.security_labels, security_level=old_template.security_level)
         if not template.dominates(user):
             return JsonResponse({'status':'violates Bell-La-Padula requirements'}, status = 403)
         models.LogEntry.objects.create(actor = user, action = "User %s upgraded Template %s"%(user, template))

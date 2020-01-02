@@ -61,6 +61,20 @@ function fill_with_data(data, doc){
 }
 async function main(){
     var final_result = await fill_template_with_data([
+        // {
+        //     "client-name": "Ajay S Dinesh", 
+        //     "creation-date": "21st Feb, 2029", 
+        //     "broker1name": "Ramesh", 
+        //     "broker1title": "Ad Agent", 
+        //     "broker1dirdial": "04662212099", 
+        //     "broker1mobile": "9876543210", 
+        //     "broker1email": "ramesh@cadboory.com", 
+        //     "broker2name": "Suresh", 
+        //     "broker2title": "Another", 
+        //     "broker2dirdial": "0666224466774", 
+        //     "broker2mobile": "9087564312", 
+        //     "broker2email": "suresh@cedburi.com", 
+        // },
         {
             "name": "This is Name", 
             "age": 20, 
@@ -71,39 +85,39 @@ async function main(){
                 'value':['value 1','value 2','test3']
             }
         },
-        // {
-        //     "name": "Name 2", 
-        //     "age": 27, 
-        //     "phone_num":"2223335321", 
-        //     "marks":0.2
-        // },
-        // {
-        //     "name": "Another Name", 
-        //     "age": 20, 
-        //     'key-value-pair':{
-        //         'value':['hey look', "it's a key!"]
-        //     }
-        // },
+        {
+            "name": "Name 2", 
+            "age": 27, 
+            "phone_num":"2223335321", 
+            "marks":0.2
+        },
+        {
+            "name": "Another Name", 
+            "age": 20, 
+            'key-value-pair':{
+                'value':['hey look', "it's a key!"]
+            }
+        },
     ],'http://127.0.0.1:8000/media/templates/TestTemp_0.html');
     for(var i=0; i<final_result.length; ++i){
         // Image/Canvas Output
-        // document.getElementById('body').appendChild(final_result[i]);
-        // var doc_fixed = await html2canvas(final_result[i], {logging: false});
-        // document.getElementById("body").removeChild(final_result[i]);
+        document.getElementById('body').appendChild(final_result[i]);
+        var doc_fixed = await html2canvas(final_result[i], {logging: false});
+        document.getElementById("body").removeChild(final_result[i]);
 
-        // document.getElementById('body').appendChild(doc_fixed);
-        // document.getElementById('body').appendChild(document.createElement("hr"));
+        document.getElementById('body').appendChild(doc_fixed);
+        document.getElementById('body').appendChild(document.createElement("hr"));
 
-        // var img=doc_fixed.toDataURL("image/png");
-        // var doc = new jsPDF('p', 'pt', 'letter');
-        // doc.addImage(img,'JPEG',20,20);
-        // // doc.save('test.pdf');
-        // doc.output("dataurlnewwindow");
+        var img=doc_fixed.toDataURL("image/jpeg", 0.8);
+        var doc = new jsPDF('p', 'pt', 'letter');
+        doc.addImage(img,'JPEG',20,20);
+        // doc.save('test.pdf');
+        doc.output("dataurlnewwindow");
 
         // Text Output:
-        var doc = new jsPDF('p', 'pt', 'letter');
-        doc.fromHTML(final_result[i]);
-        doc.output("dataurlnewwindow");
+        // var doc = new jsPDF('p', 'pt', 'letter');
+        // doc.fromHTML(final_result[i]);
+        // doc.output("dataurlnewwindow");
         
     }
 }
