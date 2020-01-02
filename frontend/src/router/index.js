@@ -25,6 +25,12 @@ export default new Router({
       path: "/results",
       component: () => import("@/views/Results.vue"),
       props: true,
+    },
+    {
+      name: "review",
+      path: "/review",
+      component: () => import("@/views/ReviewTemplate.vue"),
+      props: true,
     }
   ]
 });
