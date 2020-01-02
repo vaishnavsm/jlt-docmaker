@@ -121,12 +121,8 @@
 
 <style scoped>
     @import url("https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css");
-    @import url("https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700");
 
     * {
-        /* Fonts*/
-        --work: 'Work Sans', sans-serif;
-
         /* Colors*/
         --h2o: #5cb85c;
         --honey: #4ba76b;
@@ -146,7 +142,6 @@
     }
 
     body {
-        font-family: var(--work); /* IE10+ */
         background-image: -ms-linear-gradient(bottom, #7BD4CC 0%, #037367 100%);
 
         /* Mozilla Firefox */
@@ -166,10 +161,6 @@
         display: flex;
         align-items: center;
         align-content: center;
-    }
-
-    h2, p, input, h1, h3 {
-        font-family: var(--work);
     }
 
     .left_panel {

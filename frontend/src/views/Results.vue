@@ -6,6 +6,14 @@
             </div>
         </div>
         <div class="container">
+            <b-button variant="success" @click="handleClick(best.template_file)">{{best.template_file}}
+            </b-button>
+            <dendogram :mapping="best.mapping"></dendogram>
+        </div>
+        <div class="container" style="margin-top: 2em">
+            <h4>
+                Here's a list of top 10 matching templates
+            </h4>
             <div>
                 <b-table-lite striped hover :items="sorted">
                     <template v-slot:cell(score)="data">
@@ -13,10 +21,6 @@
                     </template>
                     <template v-slot:cell(template_file)="data">
                         <b-button variant="success" @click="handleClick(data.item.template_file)">{{data.item.template_file}}
-                        </b-button>
-                    </template>
-                    <template v-slot:cell(filled)="data">
-                        <b-button variant="success" @click="handleClick(data.item.template_file)">{{data.item.filled}}
                         </b-button>
                     </template>
                 </b-table-lite>
@@ -27,24 +31,38 @@
 
 <script>
     import axios from 'axios';
+    import Dendogram from './Dendogram.vue';
 
     export default {
         props: ['data'],
+        components: {
+            Dendogram
+        },
         computed: {
+            best: function() {
+                // need to slice to maintain data mutation
+                let cpy = this.data.slice();
+                let maxid = 0;
+                let maxobj;
+
+                cpy.map(function(obj){
+                    if (obj.score > maxid)
+                        maxobj = obj;
+                });
+                return maxobj;
+            },
             sorted: function() {
                 // need to slice to maintain data mutation
                 let cpy = this.data.slice();
-
-                for(var i=0; i<cpy.length; ++i) {
+                for(let i=0; i<cpy.length; ++i) {
                     delete cpy[i]['mapping'];
-                    cpy[i]['filled'] = cpy[i]['template_file'];
                     cpy[i]['score'] = cpy[i]['score'].toFixed(2);
                 }
-                window.console.log(cpy);
                 return cpy.sort((t1,t2) => t1.score > t2.score ? -1 : 1);
             }
         },
         methods: {
+            // method for downloading template
             handleClick: function (msg) {
                 axios.get('http://127.0.0.1:8000/media/templates/' + msg, {responseType: 'blob'})
                     .then(({data}) => {
