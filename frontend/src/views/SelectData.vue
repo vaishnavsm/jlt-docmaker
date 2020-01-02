@@ -6,6 +6,8 @@
             </div>
         </div>
         <div class="container">
+            <b-form-input v-model="template_name" placeholder="Enter template name"></b-form-input>
+            <br />
             <!-- Styled -->
             <b-form-file
                     @change="onFileChange"
@@ -15,7 +17,7 @@
                     drop-placeholder="Drop file here..."
             ></b-form-file>
             <p></p>
-            <b-button pill letiant="success" @click="onFileSubmit" :disabled="!disabled">Submit</b-button>
+            <b-button pill variant="success" @click="onFileSubmit" :disabled="!shouldBeDisabled()">Submit</b-button>
         </div>
     </div>
 </template>
@@ -30,32 +32,35 @@ export default {
     data() {
         return {
             file: null,
-            disabled: false,
+            template_name: null,
         }
     },
     methods: {
+        shouldBeDisabled() {
+            return this.file!=null && this.template_name!=null && this.template_name.length > 1;
+        },
         onFileChange(e) {
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
             this.file = files;
-            this.disabled = !this.disabled;
         },
         onFileSubmit() {
+            const template_name = this.template_name;
             if (this.file.name.endsWith('csv'))
                 csv().fromStream(fileReaderStream(this.file))
                     .then((jsonArray)=>{
-                        window.console.log(jsonArray);
-                        router.replace({name: 'review', params: {jsonArray}});
+                        // window.console.log(jsonArray);
+                        router.replace({name: 'review', params: {jsonArray, template_name}});
                     });
             else{
                 // its a json
                 let read = new FileReader();
                 read.readAsBinaryString(this.file);
                 read.onloadend = function(){
-                    window.console.log(read.result);
+                    // window.console.log(read.result);
                     let jsonArray = read.result;
-                    router.replace({name: 'review', params: {jsonArray}});
+                    router.replace({name: 'review', params: {jsonArray, template_name}});
                 }
             }
         },

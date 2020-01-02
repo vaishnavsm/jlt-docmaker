@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container-fluid">
-            <h4 style="margin-left: 0.5em; margin-bottom: 1.5em">Best matching template is: <b>internship-certificate.html</b></h4>
+            <h4 style="margin-left: 0.5em; margin-bottom: 1.5em">Best matching template is: <b>{{this.template_name}}.html</b></h4>
             <div class="row">
                 <div class="col-lg-6 container">
                     <b-form-textarea
@@ -107,7 +107,7 @@ export default {
     },
     mounted() {
         // fetch raw HTML template
-        get_template_element('outer').then((elem) => {
+        get_template_element(this.template_name).then((elem) => {
             this.raw = elem.innerHTML;
         });
         // axios.get(base+'outer.html')
@@ -115,11 +115,11 @@ export default {
         //         this.raw = data;
         //     });
     },
-    props: ['jsonArray'],
+    props: ['jsonArray', 'template_name'],
     methods: {
         batchApply() {
             // fill_template_with_data(Object.keys(jsonArray[0]),'outer').then(response => {
-            fill_template_with_data(this.jsonArray, 'outer').then(response => {
+            fill_template_with_data(this.jsonArray, this.template_name).then(response => {
                 // for(let r in response)
                 //     window.console.log(r);
                 document.getElementById('review').appendChild(response[0]);
