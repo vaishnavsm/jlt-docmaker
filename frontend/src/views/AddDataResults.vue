@@ -30,8 +30,8 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import Dendogram from './Dendogram.vue';
+    import router from "../router";
 
     export default {
         props: ['data'],
@@ -62,16 +62,21 @@
             }
         },
         methods: {
-            // method for downloading template
             handleClick: function (msg) {
-                axios.get('http://127.0.0.1:8000/media/templates/' + msg, {responseType: 'blob'})
-                    .then(({data}) => {
-                        const blob = new Blob([data], {type: 'application/pdf'});
-                        const link = document.createElement('a');
-                        link.href = URL.createObjectURL(blob);
-                        link.download = msg;
-                        link.click();
-                    });
+                let jsonArray = this.data;
+                let template_name = msg.split('.')[0];
+                window.console.log(jsonArray, template_name);
+                router.replace({name: 'review', params: {jsonArray, template_name}});
+
+                // method for downloading template
+                // axios.get('http://127.0.0.1:8000/media/templates/' + msg, {responseType: 'blob'})
+                //     .then(({data}) => {
+                //         const blob = new Blob([data], {type: 'application/pdf'});
+                //         const link = document.createElement('a');
+                //         link.href = URL.createObjectURL(blob);
+                //         link.download = msg;
+                //         link.click();
+                //     });
             }
         }
     }

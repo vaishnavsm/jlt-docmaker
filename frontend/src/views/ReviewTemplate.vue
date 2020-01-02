@@ -12,7 +12,7 @@
                     <b-form-textarea
                             id="textarea"
                             v-model="raw"
-                            rows="20"
+                            rows="30"
                     ></b-form-textarea>
                 </div>
                 <div class="col-lg-6 container" v-html="raw">
