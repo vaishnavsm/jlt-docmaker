@@ -6,6 +6,7 @@
             </div>
         </div>
         <div class="container-fluid">
+            <h4 style="margin-left: 0.5em; margin-bottom: 1.5em">Best matching template is: <b>internship-certificate.html</b></h4>
             <div class="row">
                 <div class="col-lg-6 container">
                     <b-form-textarea
@@ -17,6 +18,7 @@
                 <div class="col-lg-6 container" v-html="raw">
                 </div>
             </div>
+            <b-button style="margin-top: 1em; float: right" pill variant="success" v-on:click="batchApply()">Batch Apply</b-button>
         </div>
     </div>
 </template>
@@ -112,15 +114,13 @@ export default {
     },
     props: ['jsonArray'],
     methods: {
-        onFileSubmit() {
-            if (this.jsonArray==null) {
-                // fill_template_with_data(Object.keys(jsonArray[0]),'outer').then(response => {
-                fill_template_with_data(this.jsonArray, 'outer').then(response => {
-                    // for(let r in response)
-                    //     window.console.log(r);
-                    document.getElementById('review').appendChild(response[0]);
-                });
-            }
+        batchApply() {
+            // fill_template_with_data(Object.keys(jsonArray[0]),'outer').then(response => {
+            fill_template_with_data(this.jsonArray, 'outer').then(response => {
+                // for(let r in response)
+                //     window.console.log(r);
+                document.getElementById('review').appendChild(response[0]);
+            });
         },
     }
 }
