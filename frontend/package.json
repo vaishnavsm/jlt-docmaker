@@ -15,7 +15,7 @@
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.3.2",
     "csvtojson": "^2.0.10",
-    "d3": "^5.15.0",
+    "d3": "3.5.17",
     "filereader-stream": "^2.0.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
