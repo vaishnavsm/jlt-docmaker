@@ -26,6 +26,8 @@
 <script>
 
 /*--------------  copied from core.js -------------------------*/
+import router from "../router";
+
 let base = "http://127.0.0.1:8000/media/templates/";
 async function get_template_element(template_name){
     let response = await fetch(base+template_name+".html");
@@ -41,14 +43,15 @@ async function get_template_element(template_name){
     return elem;
 }
 
-async function fill_template_with_data(data, url){
+// async function fill_template_with_data(data, url){
+async function fill_template_with_data(data, orig_doc){
     if(!(data instanceof Array)) data = [data];
-    let orig_doc = await get_template_element(url);
+    // let orig_doc = await get_template_element(url);
     if(orig_doc == undefined) return undefined;
     let result = [];
     for(let i=0; i<data.length; ++i){
         let current_elem = orig_doc.cloneNode(true);
-        fill_with_data(data[i], current_elem)
+        fill_with_data(data[i], current_elem);
         result.push(current_elem);
     }
     return result;
@@ -118,11 +121,14 @@ export default {
     props: ['jsonArray', 'template_name'],
     methods: {
         batchApply() {
+            let raw_obj = document.createElement( 'object' );
+            raw_obj.innerHTML = this.raw;
+
             // fill_template_with_data(Object.keys(jsonArray[0]),'outer').then(response => {
-            fill_template_with_data(this.jsonArray, this.template_name).then(response => {
-                // for(let r in response)
-                //     window.console.log(r);
-                document.getElementById('review').appendChild(response[0]);
+            fill_template_with_data(this.jsonArray, raw_obj).then(response => {
+                let jsonArray = this.jsonArray;
+                let filledDocuments = response;
+                router.replace({name: 'batch_apply', params: {jsonArray, filledDocuments}});
             });
         },
     }

@@ -31,6 +31,12 @@ export default new Router({
       path: "/review",
       component: () => import("@/views/ReviewTemplate.vue"),
       props: true,
+    },
+    {
+      name: "batch_apply",
+      path: "/batch_apply",
+      component: () => import("@/views/BatchApplyResults.vue"),
+      props: true,
     }
   ]
 });
