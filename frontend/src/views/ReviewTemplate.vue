@@ -97,7 +97,7 @@ function fill_with_data(data, doc){
 /*--------------  copied from core.js -------------------------*/
 
 
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
     data() {
@@ -107,10 +107,13 @@ export default {
     },
     mounted() {
         // fetch raw HTML template
-        axios.get(base+'outer.html')
-            .then(({data}) => {
-                this.raw = data;
-            });
+        get_template_element('outer').then((elem) => {
+            this.raw = elem.innerHTML;
+        });
+        // axios.get(base+'outer.html')
+        //     .then(({data}) => {
+        //         this.raw = data;
+        //     });
     },
     props: ['jsonArray'],
     methods: {
