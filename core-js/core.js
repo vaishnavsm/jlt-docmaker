@@ -1,8 +1,15 @@
-async function get_template_element(url){
-    let response = await fetch(url);
+var base = "http://127.0.0.1:8000/media/templates/"
+async function get_template_element(template_name){
+    let response = await fetch(base+template_name+".html");
     let html = await response.text();
     var elem = document.createElement("object");
     elem.innerHTML = html;
+    var compositions = elem.getElementsByClassName("data-compose");
+    for(let i=0; i<compositions.length; ++i){
+        var composition_name = compositions[i].getAttribute("x-template-name");
+        var composition_element = await get_template_element(composition_name);
+        compositions[i].innerHTML = composition_element.innerHTML
+    }
     return elem;
 }
 
@@ -75,49 +82,55 @@ async function main(){
         //     "broker2mobile": "9087564312", 
         //     "broker2email": "suresh@cedburi.com", 
         // },
+        // {
+        //     "name": "This is Name", 
+        //     "age": 20, 
+        //     "phone_num":"9845666432", 
+        //     "marks":32.333, 
+        //     'key-value-pair':{
+        //         'key':['k1','k2','jb','k3'],
+        //         'value':['value 1','value 2','test3']
+        //     }
+        // },
+        // {
+        //     "name": "Name 2", 
+        //     "age": 27, 
+        //     "phone_num":"2223335321", 
+        //     "marks":0.2
+        // },
+        // {
+        //     "name": "Another Name", 
+        //     "age": 20, 
+        //     'key-value-pair':{
+        //         'value':['hey look', "it's a key!"]
+        //     }
+        // },
         {
-            "name": "This is Name", 
-            "age": 20, 
-            "phone_num":"9845666432", 
-            "marks":32.333, 
-            'key-value-pair':{
-                'key':['k1','k2','jb','k3'],
-                'value':['value 1','value 2','test3']
-            }
-        },
-        {
-            "name": "Name 2", 
-            "age": 27, 
-            "phone_num":"2223335321", 
-            "marks":0.2
-        },
-        {
-            "name": "Another Name", 
-            "age": 20, 
-            'key-value-pair':{
-                'value':['hey look', "it's a key!"]
-            }
-        },
-    ],'http://127.0.0.1:8000/media/templates/TestTemp_0.html');
+            "internname":"Vaishnav Sreekanth Menon",
+            "internweeks": "8",
+            "interncampus":"Mumbai",
+            "internpackage":"20 Lakhs"
+        }
+    ],'outer');
     for(var i=0; i<final_result.length; ++i){
         // Image/Canvas Output
         document.getElementById('body').appendChild(final_result[i]);
-        var doc_fixed = await html2canvas(final_result[i], {logging: false});
-        document.getElementById("body").removeChild(final_result[i]);
+        // var doc_fixed = await html2canvas(final_result[i], {logging: false});
+        // document.getElementById("body").removeChild(final_result[i]);
 
-        document.getElementById('body').appendChild(doc_fixed);
-        document.getElementById('body').appendChild(document.createElement("hr"));
+        // document.getElementById('body').appendChild(doc_fixed);
+        // document.getElementById('body').appendChild(document.createElement("hr"));
 
-        var img=doc_fixed.toDataURL("image/jpeg", 0.8);
-        var doc = new jsPDF('p', 'pt', 'letter');
-        doc.addImage(img,'JPEG',20,20);
-        // doc.save('test.pdf');
-        doc.output("dataurlnewwindow");
+        // var img=doc_fixed.toDataURL("image/jpeg", 0.8);
+        // var doc = new jsPDF('p', 'pt', 'letter');
+        // doc.addImage(img,'JPEG',20,20);
+        // // doc.save('test.pdf');
+        // doc.output("dataurlnewwindow");
 
         // Text Output:
-        // var doc = new jsPDF('p', 'pt', 'letter');
-        // doc.fromHTML(final_result[i]);
-        // doc.output("dataurlnewwindow");
+        var doc = new jsPDF('p', 'pt', 'letter');
+        doc.fromHTML(final_result[i]);
+        doc.output("dataurlnewwindow");
         
     }
 }
