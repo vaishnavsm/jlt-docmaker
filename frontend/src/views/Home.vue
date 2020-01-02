@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="text-xs-center">
-      <b-button pill variant="success" v-on:click="redirect('select_data')">Select CSV</b-button>
+      <b-button pill variant="success" v-on:click="redirect('select_data')">Select Data</b-button>
       <span> OR </span>
-      <b-button pill variant="success" v-on:click="redirect('add_data')">Enter data</b-button>
+      <b-button pill variant="success" v-on:click="redirect('add_data')">Enter Data Manually</b-button>
     </div>
   </div>
 </template>

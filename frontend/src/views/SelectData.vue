@@ -2,7 +2,7 @@
     <div class="home-page">
         <div class="banner">
             <div class="container">
-                <p>Select data from CSV or Excel file.</p>
+                <p>Select data from CSV, Excel or JSON file.</p>
             </div>
         </div>
         <div class="container">
@@ -42,11 +42,22 @@ export default {
             this.disabled = !this.disabled;
         },
         onFileSubmit() {
-            csv().fromStream(fileReaderStream(this.file))
-                .then((jsonArray)=>{
-                    window.console.log(jsonArray);
+            if (this.file.name.endsWith('csv'))
+                csv().fromStream(fileReaderStream(this.file))
+                    .then((jsonArray)=>{
+                        window.console.log(jsonArray);
+                        router.replace({name: 'review', params: {jsonArray}});
+                    });
+            else{
+                // its a json
+                let read = new FileReader();
+                read.readAsBinaryString(this.file);
+                read.onloadend = function(){
+                    window.console.log(read.result);
+                    let jsonArray = read.result;
                     router.replace({name: 'review', params: {jsonArray}});
-                });
+                }
+            }
         },
     }
 }
