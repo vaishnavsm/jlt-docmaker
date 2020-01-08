@@ -59,7 +59,8 @@ export default {
                 read.readAsBinaryString(this.file);
                 read.onloadend = function(){
                     // window.console.log(read.result);
-                    let jsonArray = read.result;
+                    let jsonArray = JSON.parse(read.result);
+                    // alert(jsonArray);
                     router.replace({name: 'review', params: {jsonArray, template_name}});
                 }
             }

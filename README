@@ -1,0 +1,12 @@
+Project of IC 69893180
+
+To Run The Backend:
+
+1) Use the given virtualenv (source env/bin/activate OR env/bin/activate.bat)
+2) Go into the server dir and run the server (python manage.py runserver)
+
+To Run The Frontend:
+1) Go into the frontend folder and run (yarn install)
+2) Run (yarn serve) for a local web server or (yarn electron) for an electron app
+
+Github: https://github.com/vaishnavsm/jlt-docmaker

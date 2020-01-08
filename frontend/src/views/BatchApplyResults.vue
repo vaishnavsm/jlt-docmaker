@@ -19,6 +19,7 @@
 
 <script>
 import * as jsPDF from 'jspdf'
+var idx = 0;
 export default {
     props: ['jsonArray', 'filledDocuments'],
     computed: {
@@ -35,7 +36,10 @@ export default {
             window.console.log(this.jsonArray, this.filledDocuments);
             window.console.log(msg);
             var doc = new jsPDF('p', 'pt', 'letter');
-            doc.fromHTML(this.filledDocuments[0]);
+            idx = Math.min(idx, this.filledDocuments.length-1)
+            doc.fromHTML(this.filledDocuments[idx]);
+            idx += 1;
+            idx = Math.min(idx, this.filledDocuments.length-1)
             doc.output("dataurlnewwindow");
         }
     }
